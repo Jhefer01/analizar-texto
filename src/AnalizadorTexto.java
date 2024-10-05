@@ -11,15 +11,17 @@ public class AnalizadorTexto {
         int totalPalabras = 0;
         int totalVocales = 0;
 
-        for (int i = 0; i < texto.length(); i++) {
-            char c = texto.charAt(i);
-            if (c >= 'a' && c <= 'z') {
-                frecuencia[c - 'a']++;
+        final int LARGO_DEL_TEXTO = texto.length();//esta funcion lo que hace es sacar del fork para asi no repetir muchas veces
+
+        for (int i = 0; i < LARGO_DEL_TEXTO; i++) {
+            char letra = texto.charAt(i);//cambiamos en nombre de la variable por una mas descriptiva
+            if (letra >= 'a' && letra <= 'z') {
+                frecuencia[letra - 'a']++;
                 totalLetras++;
-                if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+                if (letra == 'a' || letra == 'e' || letra == 'i' || letra == 'o' || letra == 'u') {
                     totalVocales++;
                 }
-            } else if (c == ' ' && i > 0 && texto.charAt(i - 1) != ' ') {
+            } else if (letra == ' ' && i > 0 && texto.charAt(i - 1) != ' ') {
                 totalPalabras++;
             }
         }
@@ -30,7 +32,8 @@ public class AnalizadorTexto {
         System.out.println("Total de palabras: " + totalPalabras);
         System.out.println("Total de vocales: " + totalVocales);
         System.out.println("Frecuencia de letras:");
-        for (int i = 0; i < 26; i++) {
+        final int LETRAS_DEL_ALFABETO = 26;//quitamos el valor magico y le asignamos un nombre
+        for (int i = 0; i < LETRAS_DEL_ALFABETO; i++) {
             if (frecuencia[i] > 0) {
                 System.out.println((char) (i + 'a') + ": " + frecuencia[i]);
             }
